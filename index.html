@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026年8月 台湾旅行プラン案</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --text: #263238;
+      --muted: #667085;
+      --accent: #d97706;
+      --accent2: #0f766e;
+      --line: #eadfce;
+      --shadow: 0 10px 30px rgba(38, 50, 56, 0.10);
+      --soft: #fff7ed;
+      --green-soft: #ecfdf5;
+      --blue-soft: #eff6ff;
+      --purple-soft: #f5f3ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 34px 18px 26px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.30), transparent 26%),
+        radial-gradient(circle at 84% 18%, rgba(255,255,255,.22), transparent 24%),
+        linear-gradient(135deg, #d97706, #0f766e);
+      color: #fff;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    header::after {
+      content: "台北・九份・台湾茶・夜市";
+      position: absolute;
+      right: -18px;
+      bottom: 12px;
+      font-size: 13px;
+      opacity: .22;
+      transform: rotate(-8deg);
+      letter-spacing: .18em;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .wrap { max-width: 980px; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: .08em;
+      opacity: .9;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: 29px;
+      line-height: 1.25;
+      letter-spacing: .02em;
+    }
+
+    .lead { margin: 0; font-size: 15px; opacity: .96; }
+
+    .summary {
+      margin: -12px 18px 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .summary-card {
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.7);
+    }
+
+    .summary-card h2 { margin: 0 0 8px; font-size: 18px; }
+    .summary-card p { margin: 0; color: #475467; font-size: 14px; }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .nav a, .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #fff3df;
+      color: #92400e;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    main { padding: 0 18px 42px; }
+    section { scroll-margin-top: 16px; }
+    .section-title { margin: 30px 0 12px; font-size: 22px; line-height: 1.35; }
+    .section-lead { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
+
+    .map-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .map-visual {
+      min-height: 230px;
+      padding: 20px;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.35)),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Taiwan_relief_location_map.jpg/800px-Taiwan_relief_location_map.jpg') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .map-visual h2 { margin: 0; font-size: 25px; line-height: 1.3; text-shadow: 0 4px 18px rgba(0,0,0,.35); }
+    .map-visual p { margin: 6px 0 0; font-size: 14px; text-shadow: 0 3px 12px rgba(0,0,0,.35); }
+    .map-body { padding: 18px; }
+
+    .grid, .plans, .areas {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .mini-card, .area-card, .plan-card {
+      background: var(--card);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    .mini-card { padding: 17px; }
+    .mini-card h3, .area-body h3, .plan-body h3 { margin: 0 0 6px; line-height: 1.35; }
+    .mini-card h3 { font-size: 18px; }
+    .mini-card p, .area-body p { margin: 0; color: #475467; font-size: 14px; }
+
+    .tag-row { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+    .tag { padding: 5px 9px; border-radius: 999px; background: #f2f4f7; color: #475467; font-size: 12px; font-weight: 700; }
+
+    .route-note {
+      margin: 18px 0 0;
+      padding: 16px;
+      border-radius: 20px;
+      background: var(--blue-soft);
+      color: #1e3a8a;
+      border: 1px solid #bfdbfe;
+      font-size: 14px;
+    }
+
+    .area-img, .plan-img {
+      min-height: 178px;
+      position: relative;
+      padding: 18px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .area-img::before, .plan-img::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(15,118,110,0.25), rgba(217,119,6,0.35)),
+        linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.55));
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      background: rgba(255,255,255,.92);
+      color: var(--accent2);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(6px);
+    }
+
+    .visual-title {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      font-size: 23px;
+      font-weight: 900;
+      line-height: 1.25;
+      text-shadow: 0 3px 12px rgba(0,0,0,.35);
+      max-width: 88%;
+    }
+
+    .area-body, .plan-body { padding: 18px; }
+    .area-body h3, .plan-body h3 { font-size: 20px; }
+
+    .concept {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .features {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .features li {
+      padding-left: 1.6em;
+      position: relative;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-weight: 900;
+    }
+
+    .day-flow {
+      margin-top: 14px;
+      padding: 13px;
+      background: #f8fafc;
+      border-radius: 16px;
+      color: #475467;
+      font-size: 13px;
+    }
+
+    .recommend {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: #ecfdf5;
+      border-radius: 14px;
+      color: #065f46;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 26px;
+      padding: 18px;
+      border-radius: 20px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 22px 18px 34px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (min-width: 760px) {
+      header { padding: 52px 28px 42px; }
+      h1 { font-size: 42px; }
+      .lead { font-size: 17px; max-width: 760px; }
+      .summary { margin-left: 28px; margin-right: 28px; }
+      main { padding-left: 28px; padding-right: 28px; }
+      .grid, .areas, .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .plan-img, .area-img { min-height: 215px; }
+      .map-visual { min-height: 330px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">TAIWAN TRIP / AUG 22–25, 2026</div>
+      <h1>4人で楽しむ台湾旅行<br>共有用プランサイト</h1>
+      <p class="lead">台湾の全体像、台北・台南周辺の注目エリア、そして今回の7つの旅行案をスマホで見やすくまとめました。</p>
+    </div>
+  </header>
+
+  <section class="summary wrap">
+    <div class="summary-card">
+      <h2>今回の旅の前提</h2>
+      <p>2026年8月22日（土）〜8月25日（火）の3泊4日。グルメ・台湾茶・カフェを軸に、温泉またはリラクゼーションも1回入れる想定です。</p>
+      <div class="nav">
+        <a href="#overview">① 台湾の全体像</a>
+        <a href="#areas">② 注目エリア</a>
+        <a href="#plans">③ 7つの旅行案</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section id="overview">
+      <h2 class="section-title">① 台湾の全体像</h2>
+      <p class="section-lead">台湾は南北に細長い島。旅行では「北部＝台北中心」「東部＝自然」「西部＝都市とローカル文化」「南部＝歴史と南国感」でざっくり捉えるとわかりやすいです。</p>
+
+      <div class="map-card">
+        <div class="map-visual">
+          <h2>北から南まで、意外とコンパクト</h2>
+          <p>台北〜高雄は高速鉄道で約1.5〜2時間。3泊4日では北部中心が楽ですが、台南・高雄を入れると“移動多めの欲張り旅”になります。</p>
+        </div>
+        <div class="map-body">
+          <div class="grid">
+            <div class="mini-card">
+              <h3>北部：台北・九份・基隆・北投</h3>
+              <p>初台湾で最も組みやすいエリア。都市観光、夜市、茶藝館、博物館、温泉、九份・平渓線の日帰り旅まで幅広い。</p>
+              <div class="tag-row"><span class="tag">グルメ</span><span class="tag">MRT</span><span class="tag">温泉</span><span class="tag">九份</span></div>
+            </div>
+            <div class="mini-card">
+              <h3>東部：台東・花蓮方面</h3>
+              <p>山と海、原住民文化、ゆったりした自然旅が魅力。今回の3泊4日では優先度を下げ、別旅行でじっくり行く方が満足度高め。</p>
+              <div class="tag-row"><span class="tag">自然</span><span class="tag">海岸線</span><span class="tag">ゆったり</span></div>
+            </div>
+            <div class="mini-card">
+              <h3>西部：台中・嘉義・鶯歌など</h3>
+              <p>都市とローカル文化がつながるエリア。鶯歌の陶器、台中のカフェ文化、嘉義方面のグルメなど、深掘りすると楽しい。</p>
+              <div class="tag-row"><span class="tag">陶器</span><span class="tag">カフェ</span><span class="tag">街歩き</span></div>
+            </div>
+            <div class="mini-card">
+              <h3>南部：台南・高雄</h3>
+              <p>台南は台湾らしい歴史・寺院・小吃グルメの宝庫。高雄は港町・アート・都市観光が魅力。今回は入れるなら北部観光を削る前提。</p>
+              <div class="tag-row"><span class="tag">台南グルメ</span><span class="tag">歴史</span><span class="tag">港町</span></div>
+            </div>
+          </div>
+          <div class="route-note"><strong>今回の考え方：</strong>初回または久しぶりの台湾なら、台北を拠点に九份・平渓線・基隆・鶯歌・北投を組み合わせるのが無理が少ないです。台南を入れる場合は、九份・平渓線・基隆のどれかを削るのが現実的です。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas">
+      <h2 class="section-title">② ポイントとなるエリア紹介</h2>
+      <p class="section-lead">今回の候補地を「台北・北部周辺」と「台南・南部周辺」に分けて整理します。</p>
+
+      <h3 class="section-title" style="font-size:18px; margin-top:18px;">台北・北部周辺</h3>
+      <div class="areas">
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/7/70/Jiufen_old_street.jpg');"><span class="badge">北部</span><div class="visual-title">九份（ジョウフェン）</div></div>
+          <div class="area-body">
+            <h3>九份（ジョウフェン）：坂道と茶屋、夕暮れのノスタルジー</h3>
+            <p>山あいの旧市街。茶屋、細い路地、海を見下ろす景色が魅力。昼〜夕方に行くと雰囲気を味わいやすく、夜は混雑しやすいです。</p>
+            <div class="tag-row"><span class="tag">茶屋</span><span class="tag">写真</span><span class="tag">夕景</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Pingxi_Line_train.jpg');"><span class="badge">北部</span><div class="visual-title">平渓線（ピンシーシエン）・十分（シーフェン）</div></div>
+          <div class="area-body">
+            <h3>平渓線（ピンシーシエン）：ローカル線とランタン体験</h3>
+            <p>十分でランタンを飛ばしたり、ローカル鉄道の雰囲気を楽しめるエリア。九份と同日に組めますが、詰め込みすぎると疲れます。</p>
+            <div class="tag-row"><span class="tag">ランタン</span><span class="tag">ローカル線</span><span class="tag">散歩</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/6/6d/Keelung_Miaokou_Night_Market.jpg');"><span class="badge">北部</span><div class="visual-title">基隆（キールン）</div></div>
+          <div class="area-body">
+            <h3>基隆（キールン）：港町と廟口夜市</h3>
+            <p>港町らしい活気と海鮮・夜市が魅力。九份の後に基隆夜市へ流すと、北部らしい“山→港→屋台”の一日になります。</p>
+            <div class="tag-row"><span class="tag">夜市</span><span class="tag">海鮮</span><span class="tag">港町</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/88/Yingge_Old_Street_2018.jpg');"><span class="badge">北部</span><div class="visual-title">鶯歌（インゴー）</div></div>
+          <div class="area-body">
+            <h3>鶯歌（インゴー）：陶器と台湾茶に合う器探し</h3>
+            <p>陶器の街。お茶好きなら茶器選びが楽しいエリアです。茶藝館やカフェと組み合わせると、大人っぽい文化旅になります。</p>
+            <div class="tag-row"><span class="tag">陶器</span><span class="tag">茶器</span><span class="tag">買い物</span></div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="section-title" style="font-size:18px; margin-top:28px;">台南・南部周辺</h3>
+      <div class="areas">
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/84/Tainan_City_skyline.jpg');"><span class="badge">南部</span><div class="visual-title">台南市（タイナン）</div></div>
+          <div class="area-body">
+            <h3>台南市（タイナン）：歴史と小吃グルメの中心地</h3>
+            <p>台湾の古都らしい寺院・古跡・路地・ローカルグルメが濃い街。牛肉湯、担仔麺、蝦仁飯など“食べる旅”との相性が抜群です。</p>
+            <div class="tag-row"><span class="tag">古都</span><span class="tag">小吃</span><span class="tag">寺院</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/41/Anping_Tree_House_2017.jpg');"><span class="badge">南部</span><div class="visual-title">安平（アンピン）</div></div>
+          <div class="area-body">
+            <h3>安平（アンピン）：港町の歴史と散策</h3>
+            <p>安平古堡や安平樹屋など、台南の歴史を感じるエリア。台南市内観光に1〜2時間足すだけでも旅の印象がかなり変わります。</p>
+            <div class="tag-row"><span class="tag">歴史</span><span class="tag">古堡</span><span class="tag">散策</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Kaohsiung_harbor.jpg');"><span class="badge">南部</span><div class="visual-title">高雄（カオシォン）</div></div>
+          <div class="area-body">
+            <h3>高雄（カオシォン）：港町・アート・南国感</h3>
+            <p>台湾南部の大都市。港の景色、倉庫リノベ系アートエリア、夜市、海沿い散歩が楽しめます。台南とセットにするなら南部1泊が理想。</p>
+            <div class="tag-row"><span class="tag">港町</span><span class="tag">アート</span><span class="tag">南国感</span></div>
+          </div>
+        </article>
+
+        <article class="area-card">
+          <div class="area-img" style="background-image:linear-gradient(135deg, #0f766e, #f59e0b);"><span class="badge">判断軸</span><div class="visual-title">台南を入れる？</div></div>
+          <div class="area-body">
+            <h3>3泊4日なら「北部集中」か「南部を入れて絞る」</h3>
+            <p>台南は魅力大。ただし台北・九份・平渓線・基隆・鶯歌を全部入れた上で台南まで行くと忙しいため、旅のテーマを決めて削るのが正解です。</p>
+            <div class="tag-row"><span class="tag">移動多め</span><span class="tag">食重視なら有力</span><span class="tag">1泊推奨</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="plans">
+      <h2 class="section-title">③ 7つの旅行案</h2>
+      <p class="section-lead">どのプランも「グルメ」と「台湾茶・カフェ」を入れ、旅行中に1回は温泉またはリラクゼーションを楽しむ設計です。</p>
+
+      <div class="plans">
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/7/70/Jiufen_old_street.jpg');"><span class="badge">Plan 1</span><div class="visual-title">九份と平渓線の王道旅</div></div>
+          <div class="plan-body">
+            <h3>王道だけど完成度MAX：台北＋九份＋平渓線ゆる旅</h3>
+            <p class="concept">初台湾でも満足度が高い、王道バランス型。</p>
+            <ul class="features"><li>九份・十分ランタン・台北夜市をまとめて楽しむ</li><li>北投温泉でリラックス時間を確保</li><li>観光・食・お茶のバランスが良い</li></ul>
+            <div class="day-flow">Day1 台北夜市 → Day2 九份・平渓線 → Day3 博物館・買い物・温泉 → Day4 カフェ・土産</div>
+            <div class="recommend">おすすめ：初台湾・全員の満足度重視</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Tea_set_in_Taiwan.jpg');"><span class="badge">Plan 2</span><div class="visual-title">台湾茶と器の文化旅</div></div>
+          <div class="plan-body">
+            <h3>お茶と美意識に浸る：大人の台湾文化旅</h3>
+            <p class="concept">台湾茶・器・カフェを中心にした静かな文化旅。</p>
+            <ul class="features"><li>鶯歌で陶器の街歩き</li><li>茶藝館で本格的な台湾茶体験</li><li>九份を外して余裕を重視</li></ul>
+            <div class="day-flow">Day1 カフェ・夜市 → Day2 鶯歌・台湾茶 → Day3 故宮・スパ → Day4 ショッピング</div>
+            <div class="recommend">おすすめ：混雑を避けたい・文化好き</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/33/Shilin_Night_Market.jpg');"><span class="badge">Plan 3</span><div class="visual-title">夜市とローカル飯の旅</div></div>
+          <div class="plan-body">
+            <h3>グルメ全振り＋軽く観光：食べ尽くし台湾</h3>
+            <p class="concept">観光よりも食。朝から夜まで台湾を食べる旅。</p>
+            <ul class="features"><li>豆漿・小籠包・夜市・ローカル料理を重視</li><li>基隆廟口夜市も候補に入れる</li><li>マッサージで胃袋と体力を回復</li></ul>
+            <div class="day-flow">Day1 台北夜市 → Day2 朝食・小籠包・基隆夜市 → Day3 カフェ・買い物・マッサージ → Day4 食べ納め</div>
+            <div class="recommend">おすすめ：食べ歩き最優先</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Pingxi_Line_train.jpg');"><span class="badge">Plan 4</span><div class="visual-title">海とローカル線の旅</div></div>
+          <div class="plan-body">
+            <h3>海とノスタルジー：九份・基隆・ローカル線旅</h3>
+            <p class="concept">山・海・港町・ローカル線の雰囲気を楽しむ旅。</p>
+            <ul class="features"><li>九份を昼〜夕方に楽しみ、夜は基隆へ</li><li>平渓線でのんびりローカル旅</li><li>写真映えと散歩の満足度が高い</li></ul>
+            <div class="day-flow">Day1 台北グルメ → Day2 九份・基隆 → Day3 平渓線・温泉 → Day4 カフェ</div>
+            <div class="recommend">おすすめ：雰囲気・写真・街歩き好き</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/84/Tainan_City_skyline.jpg');"><span class="badge">Plan 5</span><div class="visual-title">台南ショートトリップ</div></div>
+          <div class="plan-body">
+            <h3>欲張りだけど成立：台北＋台南ショートトリップ</h3>
+            <p class="concept">どうしても台南に行きたい人向けのやや忙しい案。</p>
+            <ul class="features"><li>台湾高速鉄道で台南へ日帰りまたは1泊</li><li>台南グルメとレトロな街並みを楽しむ</li><li>九份・平渓・基隆は削る前提</li></ul>
+            <div class="day-flow">Day1 台北 → Day2 台南 → Day3 台北・温泉 → Day4 軽めに帰国準備</div>
+            <div class="recommend">おすすめ：台南への興味が強い・移動OK</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/1/1e/National_Palace_Museum_Taipei.jpg');"><span class="badge">Plan 6</span><div class="visual-title">博物館とアート巡り</div></div>
+          <div class="plan-body">
+            <h3>知的好奇心を満たす：博物館×アート×静かな台北</h3>
+            <p class="concept">見る・考える・味わう。大人の知的台湾旅。</p>
+            <ul class="features"><li>故宮博物院をじっくり見学</li><li>台北当代芸術館や華山1914でアート散策</li><li>夜は台湾茶で落ち着いた時間</li></ul>
+            <div class="day-flow">Day1 台北夜市 → Day2 故宮・現代アート・台湾茶 → Day3 鶯歌・スパ → Day4 土産</div>
+            <div class="recommend">おすすめ：美術館・会話・静かな旅</div>
+          </div>
+        </article>
+
+        <article class="plan-card">
+          <div class="plan-img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Beitou_Hot_Spring.jpg');"><span class="badge">Plan 7</span><div class="visual-title">寺院と温泉で整う旅</div></div>
+          <div class="plan-body">
+            <h3>運気と癒しを巡る：寺院・温泉・心整う台湾</h3>
+            <p class="concept">参拝・温泉・台湾茶で心身を整える旅。</p>
+            <ul class="features"><li>龍山寺・行天宮など寺院巡り</li><li>北投温泉でしっかりリラックス</li><li>占い横丁や茶藝館も組み合わせやすい</li></ul>
+            <div class="day-flow">Day1 夜市 → Day2 寺院巡り・ローカルグルメ → Day3 北投温泉・台湾茶 → Day4 買い物</div>
+            <div class="recommend">おすすめ：癒し・運気・落ち着いた旅</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="note"><strong>選び方の目安：</strong><br>迷ったら、王道ならPlan 1、雰囲気重視ならPlan 4、落ち着いた大人旅ならPlan 6、癒し重視ならPlan 7。台南を入れるPlan 5は魅力的ですが、3泊4日では他の北部観光をかなり削る必要があります。</div>
+    </section>
+  </main>
+
+  <footer>
+    2026年8月22日（土）〜8月25日（火） 台湾旅行プラン案
+  </footer>
+</body>
+</html>
